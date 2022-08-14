@@ -1,0 +1,56 @@
+
+
+<mat-toolbar  color="warn">
+  <div class="orange_touch"></div>
+ <p style="color: black; font-size: 26px;">FOND DOCUMENTAIRE</p>
+
+ <span class="flexExpand"></span>
+
+  <adf-notification-history style="color: rgb(83, 83, 83); " [menuPositionX]="'before'" [menuPositionY]="'above'" ></adf-notification-history>
+  <adf-userinfo style="color: rgb(83, 83, 83); " namePosition="right" menuPositionX="after"></adf-userinfo>
+
+<!-- <a adf-logout>
+  <button  mat-flat-button >
+    <mat-icon>logout</mat-icon>
+    DÉCONNEXION
+
+  </button>
+</a> -->
+
+<button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon style="color: rgb(31, 31, 31);">more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+
+
+  <button mat-menu-item [matMenuTriggerFor]="langMenu">
+    <mat-icon >language</mat-icon>
+    <span>Langues</span>
+  </button>
+    <mat-menu #langMenu="matMenu">
+    <adf-language-menu></adf-language-menu>
+   </mat-menu>
+   <button mat-menu-item routerLink="/recent">
+    <mat-icon>history</mat-icon>
+    <span>Récent</span>
+</button>
+  <button mat-menu-item routerLink="/favorites">
+      <mat-icon>star</mat-icon>
+      <span>Favori</span>
+  </button>
+  <button mat-menu-item routerLink="/trashcan">
+      <mat-icon>delete</mat-icon>
+      <span>Corbeille</span>
+  </button>
+
+
+  <mat-divider></mat-divider>
+  <a adf-logout  >
+    <button  mat-menu-item >
+      <mat-icon>logout</mat-icon>
+      Déconnexion
+
+    </button>
+  </a>
+</mat-menu>
+</mat-toolbar>

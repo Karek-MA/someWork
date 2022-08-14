@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 1266 881" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="5390.346" y1="977.455" x2="5390.346" y2="2869.831" id="gradient-0">
+      <stop offset="0" style="stop-color: rgba(226, 34, 27, 1)"/>
+      <stop offset="1" style="stop-color: rgba(135, 20, 16, 1)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="5312.439" y1="1241.08" x2="5312.439" y2="2884.204" id="gradient-1">
+      <stop offset="0" style="stop-color: rgba(226, 34, 27, 1)"/>
+      <stop offset="1" style="stop-color: rgba(135, 20, 16, 1)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="3919.179" y1="1155.209" x2="3919.179" y2="6680.833" id="gradient-2">
+      <stop offset="0" style="stop-color: rgba(226, 34, 27, 1)"/>
+      <stop offset="1" style="stop-color: rgba(135, 20, 16, 1)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="5906.978" y1="2073.429" x2="5906.978" y2="3300.722" id="gradient-3">
+      <stop offset="0" style="stop-color: rgba(226, 34, 27, 1)"/>
+      <stop offset="1" style="stop-color: rgba(135, 20, 16, 1)"/>
+    </linearGradient>
+  </defs>
+  <g id="1.-🎨-Styles-/-Atoms-/-Molecules-/-Compounds" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="08.6-Various-(Light)" transform="translate(-66.000000, -304.000000)">
+      <g id="3.-Layout/Background/Wallpaper-BG-generic" transform="translate(66.000000, 303.000000)">
+        <g id="standards/bgWallpaper-ColCircles" transform="translate(0.000000, 1.000000)">
+          <mask id="mask-2" fill="white">
+            <rect x="0" y="0" width="1266" height="900" transform="matrix(1, 0, 0, 1, 0, 0)"/>
+          </mask>
+          <g id="Mask"/>
+          <g id="interectionsShapes" mask="url(#mask-2)">
+            <g transform="translate(-5164.225000, -2427.539062)" id="Petals-outlines">
+              <g transform="translate(0.528510, 0.528353)">
+                <path d="M 5395.888 2869.831 C 5918.236 2869.865 6341.713 2446.984 6341.621 1923.736 C 6341.529 1400.488 5828.593 976.286 5395.766 977.517 C 5181.795 978.125 5114.845 435.811 4511.033 1046.633 C 4539.696 1496.078 4450.022 1753.338 4450.033 1923.613 C 4450.067 2446.161 4873.541 2869.797 5395.888 2869.831 Z" id="Petal-Blue" stroke-width="4.39453125" transform="translate(5390.345924, 1923.643170) rotate(-193.000000) translate(-5390.345924, -1923.643170) " style="stroke: url(#gradient-0);"/>
+                <path d="M 5317.34 2884.204 C 5770.809 2884.266 6138.634 2516.393 6138.305 2062.812 C 6137.976 1609.23 5343.688 1438.163 5317.115 1241.194 C 5296.452 1088.034 4885.72 1241.135 4486.574 1241.08 C 4492.938 1640.909 4496.13 1914.744 4496.15 2062.586 C 4496.213 2516.291 4863.872 2884.142 5317.34 2884.204 Z" id="Petal-Green" stroke-width="8.7890625" transform="translate(5312.439529, 2062.641872) rotate(-236.000000) translate(-5312.439529, -2062.641872) " style="stroke: url(#gradient-1);"/>
+                <path d="M3934.48555,6680.83263 C5460.29007,6680.60662 6697.38225,5443.47052 6697.60826,3917.61181 C6697.83428,2391.7531 5461.10856,1154.98344 3935.30404,1155.20945 C3415.2913,1155.28648 2483.77296,1155.42446 1140.74902,1155.6234 C1161.77754,2500.28672 1172.25498,3421.22235 1172.18133,3918.43027 C1171.95531,5444.28898 2408.68104,6681.05864 3934.48555,6680.83263 Z" id="Petal-thin-orange" stroke-width="1.7578125" transform="translate(3919.178643, 3918.021040) rotate(-135.000000) translate(-3919.178643, -3918.021040) " style="stroke: url(#gradient-2);"/>
+                <path d="M 5910.637 3300.722 C 6249.47 3300.767 6524.111 3026.085 6524.065 2687.2 C 6524.019 2348.316 6102.191 1794.136 5910.471 2073.513 C 5761.385 2290.763 5592.384 2118.5 5289.889 2073.429 C 5294.644 2372.072 5297.029 2576.607 5297.043 2687.034 C 5297.089 3025.919 5571.805 3300.676 5910.637 3300.722 Z" id="Petal-orange" stroke-width="20.2148438" transform="translate(5906.977367, 2687.075220) rotate(-57.000000) translate(-5906.977367, -2687.075220) " style="stroke: url(#gradient-3);"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

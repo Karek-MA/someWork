@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 768 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="6131.157" y1="1112.152" x2="6131.157" y2="3265.152" id="gradient-0">
+      <stop offset="0" style="stop-color: rgba(226, 34, 27, 1)"/>
+      <stop offset="1" style="stop-color: rgba(135, 20, 16, 1)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="6042.496" y1="1412.345" x2="6042.496" y2="3281.345" id="gradient-1">
+      <stop offset="0" style="stop-color: rgba(226, 34, 27, 1)"/>
+      <stop offset="1" style="stop-color: rgba(135, 20, 16, 1)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="4458" y1="1315" x2="4458" y2="7601" id="gradient-2">
+      <stop offset="0" style="stop-color: rgba(226, 34, 27, 1)"/>
+      <stop offset="1" style="stop-color: rgba(135, 20, 16, 1)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="6718.902" y1="2359.281" x2="6718.902" y2="3755.281" id="gradient-3">
+      <stop offset="0" style="stop-color: rgba(226, 34, 27, 1)"/>
+      <stop offset="1" style="stop-color: rgba(135, 20, 16, 1)"/>
+    </linearGradient>
+  </defs>
+  <g id="1.-🎨-Styles-/-Atoms-/-Molecules-/-Compounds" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="08.5-Various-(Light)" transform="matrix(1, 0, 0, 1, -127.586494, -616.025024)">
+      <g id="Header" transform="matrix(1, 0, 0, 1, 89.141861, 554.254578)">
+        <g id="3.-Layout/Desktop/Header/ADW/MastHead" transform="translate(0.000000, 43.000000)">
+          <g id="mastHead-bg-shapesPattern">
+            <g id="bgWallpaper-Pattern">
+              <g transform="translate(0.000000, -418.000000)" id="standards/bgWallpaper-ColCircles">
+                <g transform="translate(0.000000, 1.000000)">
+                  <mask id="mask-2" fill="white">
+                    <rect x="0" y="0" width="1440" height="1024" transform="matrix(1, 0, 0, 1, 0, 0)"/>
+                  </mask>
+                  <g id="Mask"/>
+                  <g id="interectionsShapes" mask="url(#mask-2)">
+                    <g transform="translate(-5874.000000, -2763.000000)" id="Group-2">
+                      <g transform="translate(0.025102, 0.632890)">
+                        <g id="masthead-v2" transform="translate(0.576046, 0.968258)">
+                          <path d="M6137.3568,3265.15228 C6731.50498,3265.15228 7213.15725,2783.18681 7213.15725,2188.65228 C7213.15725,1594.11774 6731.50498,1112.15228 6137.3568,1112.15228 C5934.86387,1112.15228 5572.13069,1112.15228 5049.15725,1112.15228 C5057.42331,1636.08719 5061.55635,1994.92052 5061.55635,2188.65228 C5061.55635,2783.18681 5543.20862,3265.15228 6137.3568,3265.15228 Z" id="Petal-Blue" stroke-width="5" transform="translate(6131.157249, 2188.652277) rotate(-193.000000) translate(-6131.157249, -2188.652277) " style="paint-order: stroke; stroke: url(#gradient-0);"/>
+                          <path d="M6047.87926,3281.34542 C6563.7778,3281.34542 6981.9962,2862.95552 6981.9962,2346.84542 C6981.9962,1830.73532 6563.7778,1412.34542 6047.87926,1412.34542 C5872.05476,1412.34542 5557.09374,1412.34542 5102.9962,1412.34542 C5110.17362,1867.16862 5113.76233,2178.66862 5113.76233,2346.84542 C5113.76233,2862.95552 5531.98072,3281.34542 6047.87926,3281.34542 Z" id="Petal-Green" stroke-width="10" transform="translate(6042.496196, 2346.845419) rotate(-236.000000) translate(-6042.496196, -2346.845419) " style="paint-order: stroke; stroke: url(#gradient-1);"/>
+                          <path d="M4476.11162,7601 C6211.88094,7601 7619,6193.83097 7619,4458 C7619,2722.16903 6211.88094,1315 4476.11162,1315 C3884.54032,1315 2824.83644,1315 1297,1315 C1321.14883,2844.705 1333.22325,3892.37167 1333.22325,4458 C1333.22325,6193.83097 2740.3423,7601 4476.11162,7601 Z" id="Petal-thin-orange" stroke-width="2" transform="translate(4458.000000, 4458.000000) rotate(-135.000000) translate(-4458.000000, -4458.000000) " style="paint-order: stroke; stroke: url(#gradient-2);"/>
+                          <path d="M6722.92439,3755.28058 C7108.40685,3755.28058 7420.90213,3442.77534 7420.90213,3057.28058 C7420.90213,2671.78583 7108.40685,2359.28058 6722.92439,2359.28058 C6591.54728,2359.28058 6356.20653,2359.28058 6016.90213,2359.28058 C6022.26515,2698.99872 6024.94665,2931.66538 6024.94665,3057.28058 C6024.94665,3442.77534 6337.44193,3755.28058 6722.92439,3755.28058 Z" id="Petal-orange" stroke-width="23" transform="translate(6718.902134, 3057.280584) rotate(-57.000000) translate(-6718.902134, -3057.280584) " style="paint-order: stroke; stroke: url(#gradient-3);"/>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

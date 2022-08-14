@@ -1,0 +1,11 @@
+.flexExpand {
+  flex: 1 1 auto;
+}
+.orange_touch{
+  width: 34px;
+   height: 100%;
+    position:sticky;
+     background-color: #ff9800;
+     margin-left: -14px;
+     margin-right: 1%;
+}

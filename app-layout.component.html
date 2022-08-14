@@ -1,0 +1,132 @@
+
+<app-header></app-header>
+<adf-toolbar >
+  <div class="grey_touch"></div>
+  <mat-icon style="cursor: pointer;" (click)="reSetFolders()" aria-hidden="false"  aria-label="Example home icon">home</mat-icon>
+
+<div class="toolbar_buttons">
+  <button [ngClass]="t.menuOpen ? 'active':'inActive'" #t="matMenuTrigger" class="button_link" mat-flat-button   [matMenuTriggerFor]="menuLink" (click)=" getDocumentLibrary('b15c8d54-c59d-4ba9-8389-52efd2749cd3')"> REFERENTIEL </button>
+
+  <mat-menu class="menu_link"   #menuLink="matMenu">
+    <span *ngIf="!folders.length" mat-menu-item class="white_color">Chargement...</span>
+    <button (mouseenter)=" getSubFolders(folder.id)"  mat-menu-item class="white_color" [matMenuTriggerFor]="subMenuLink"  *ngFor="let folder of folders" > {{folder.name}}  </button>
+    <mat-menu class="menu_link"   #subMenuLink="matMenu">
+      <span *ngIf="!subFolders.length" mat-menu-item class="white_color">Chargement...</span>
+      <button  (click)="setCurrentFolderID(folder.id)"   mat-menu-item class="white_color" *ngFor="let folder of subFolders"> {{folder.name}} </button>
+
+    </mat-menu>
+  </mat-menu>
+</div>
+
+<!-- *************************************************************** -->
+<div class="toolbar_buttons">
+  <button [ngClass]="t1.menuOpen ? 'active':'inActive'" #t1="matMenuTrigger" class="button_link" mat-flat-button   [matMenuTriggerFor]="menuLink1" (click)=" getDocumentLibrary('0c3d35f4-43fa-4275-832d-05877888e1f3')"> DOCUMENTS DE TRAVAIL </button>
+
+  <mat-menu class="menu_link"   #menuLink1="matMenu">
+    <span *ngIf="!folders.length" mat-menu-item class="white_color">Chargement...</span>
+    <button (mouseenter)=" getSubFolders(folder.id)"  mat-menu-item class="white_color" [matMenuTriggerFor]="subMenuLink1"  *ngFor="let folder of folders" > {{folder.name}}  </button>
+    <mat-menu class="menu_link"   #subMenuLink1="matMenu">
+      <span *ngIf="!subFolders.length" mat-menu-item class="white_color">Chargement...</span>
+   <button (click)="setCurrentFolderID(folder.id)"   mat-menu-item class="white_color" *ngFor="let folder of subFolders"> {{folder.name}} </button>
+
+    </mat-menu>
+  </mat-menu>
+</div>
+
+<!-- *************************************************************** -->
+<div class="toolbar_buttons">
+  <button [ngClass]="t2.menuOpen ? 'active':'inActive'" #t2="matMenuTrigger" class="button_link" mat-flat-button   [matMenuTriggerFor]="menuLink2" (click)=" getDocumentLibrary('72d1d276-5935-411d-9852-79dbdfec0670')"> DOCUMENTS DE FORMATION - ÉTUDES </button>
+
+  <mat-menu class="menu_link"   #menuLink2="matMenu">
+    <span *ngIf="!folders.length" mat-menu-item class="white_color">Chargement...</span>
+    <button (mouseenter)=" getSubFolders(folder.id)"  mat-menu-item class="white_color" [matMenuTriggerFor]="subMenuLink2"  *ngFor="let folder of folders" > {{folder.name}}  </button>
+    <mat-menu class="menu_link"   #subMenuLink2="matMenu">
+      <span *ngIf="!subFolders.length" mat-menu-item class="white_color">Chargement...</span>
+   <button (click)="setCurrentFolderID(folder.id)"   mat-menu-item class="white_color" *ngFor="let folder of subFolders"> {{folder.name}} </button>
+
+    </mat-menu>
+  </mat-menu>
+</div>
+
+<!-- *************************************************************** -->
+<div class="toolbar_buttons">
+  <button [ngClass]="t3.menuOpen ? 'active':'inActive'" #t3="matMenuTrigger" class="button_link" mat-flat-button   [matMenuTriggerFor]="menuLink3" (click)=" getDocumentLibrary('ab4927c7-6d4d-4c4b-a0c0-ada57a1c711c')"> BIBLIOTHÈQUE </button>
+
+  <mat-menu class="menu_link"   #menuLink3="matMenu">
+    <span *ngIf="!folders.length" mat-menu-item class="white_color">Chargement...</span>
+    <button (mouseenter)=" getSubFolders(folder.id)"  mat-menu-item class="white_color" [matMenuTriggerFor]="subMenuLink3"  *ngFor="let folder of folders" > {{folder.name}}  </button>
+    <mat-menu class="menu_link"   #subMenuLink3="matMenu">
+      <span *ngIf="!subFolders.length" mat-menu-item class="white_color">Chargement...</span>
+    <button (click)="setCurrentFolderID(folder.id)"   mat-menu-item class="white_color" *ngFor="let folder of subFolders"> {{folder.name}} </button>
+
+    </mat-menu>
+  </mat-menu>
+</div>
+
+<!-- *************************************************************** -->
+<div class="toolbar_buttons">
+  <button [ngClass]="t4.menuOpen ? 'active':'inActive'" #t4="matMenuTrigger" class="button_link" mat-flat-button   [matMenuTriggerFor]="menuLink4" (click)=" getDocumentLibrary('ebb7c456-e0f8-4a89-80aa-f94add7621f7')"> GALERIE </button>
+
+  <mat-menu class="menu_link"   #menuLink4="matMenu">
+    <span *ngIf="!folders.length" mat-menu-item class="white_color">Chargement...</span>
+    <button (mouseenter)=" getSubFolders(folder.id)"  mat-menu-item class="white_color" [matMenuTriggerFor]="subMenuLink4"  *ngFor="let folder of folders" > {{folder.name}}  </button>
+    <mat-menu class="menu_link"   #subMenuLink4="matMenu">
+
+  <button (click)="setCurrentFolderID(folder.id)"   mat-menu-item class="white_color" *ngFor="let folder of subFolders"> {{folder.name}} </button>
+
+    </mat-menu>
+  </mat-menu>
+</div>
+
+<!-- *************************************************************** -->
+
+
+
+
+
+
+
+
+
+<p *ngIf="currentFolderID !=''" class="rechercher">Rechercher</p>
+<adf-search-control *ngIf="currentFolderID !=''" class="searchbar"
+
+
+    [highlight]="true"
+    (optionClicked)="onItemClicked($event)"
+    (submit)="onSearchSubmit($event)">
+    <!-- <adf-empty-search-result>
+        <span>I don't want to show you this result</span>
+    </adf-empty-search-result> -->
+</adf-search-control>
+
+
+
+</adf-toolbar>
+
+
+
+<router-outlet>
+
+    <div class="search" *ngIf="currentFolderID ==''">
+    <h3 class="rechercher">Rechercher</h3>
+    <adf-search-control class="searchbar"
+
+
+    [highlight]="true"
+    (optionClicked)="onItemClicked($event)"
+    (submit)="onSearchSubmit($event)">
+    <!-- <adf-empty-search-result>
+        <span>I don't want to show you this result</span>
+    </adf-empty-search-result> -->
+</adf-search-control>
+  </div>
+
+ <app-documents *ngIf="currentFolderID !=''" [currentFolderID]="currentFolderID" [currentSite]="currentSite"></app-documents>
+</router-outlet>
+
+
+<app-footer></app-footer>
+
+
+
