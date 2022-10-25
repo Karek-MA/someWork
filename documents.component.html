@@ -1,0 +1,416 @@
+
+<!-- <adf-toolbar>
+  <adf-toolbar-title>
+    <adf-breadcrumb
+      class="files-breadcrumb"
+      root="Personal Files"
+      [target]="documentList"
+      [folderNode]="documentList.folderNode"
+    >
+    </adf-breadcrumb>
+  </adf-toolbar-title>
+
+  <div class="adf-toolbar--spacer"></div>
+
+  <adf-upload-button
+    [rootFolderId]="documentList.currentFolderId || '-root-'"
+    [adf-check-allowable-operation]="'create'"
+    (success)="uploadSuccess()"
+  >
+  </adf-upload-button>
+</adf-toolbar>
+
+<adf-document-list
+  #documentList
+  currentFolderId="-root-"
+  (preview)="showPreview($event)"
+>
+</adf-document-list>
+<adf-pagination
+  [target]="documentList"
+  [supportedPageSizes]="[5, 10, 15, 20]"
+  [pagination]="10"
+>
+</adf-pagination>
+
+<adf-file-uploading-dialog></adf-file-uploading-dialog> -->
+
+<!-- <adf-toolbar>
+  <adf-toolbar-title>
+    <adf-breadcrumb
+      class="files-breadcrumb"
+      root="Personal Files"
+      [target]="documentList"
+      [folderNode]="documentList.folderNode"
+    >
+    </adf-breadcrumb>
+  </adf-toolbar-title>
+
+  <div class="adf-toolbar--spacer"></div>
+
+  <adf-upload-button
+    [rootFolderId]="documentList.currentFolderId || '-root-'"
+    [adf-check-allowable-operation]="'create'"
+    (success)="uploadSuccess()"
+  >
+  </adf-upload-button>
+</adf-toolbar>
+
+
+<adf-document-list
+    #documentList
+    [currentFolderId]="currentFolderID"
+    [contextMenuActions]="true"
+    (preview)="showPreview($event)"
+    [contentActions]="true">
+</adf-document-list>
+<adf-pagination
+  [target]="documentList"
+  [supportedPageSizes]="[5, 10, 15, 20]"
+  [pagination]="10"
+>
+</adf-pagination>
+
+<adf-file-uploading-dialog></adf-file-uploading-dialog> -->
+<div class="app-container">
+
+  <!-- <mat-accordion *ngIf="true" class="app-container-recent">
+    <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ 'DOCUMENT_LIST.RECENT.TITLE' | translate }}
+                <mat-icon>history</mat-icon>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <adf-document-list
+            [currentFolderId]="'-recent-'"
+            locationFormat="/files"
+            [display]="'gallery'"
+            [preselectNodes]="selectedNodes"
+            [showHeader]="noHeaderMode"
+            [maxItems]="5"
+            (preview)="showFile($event)"
+            selectionMode="null">
+            <adf-custom-empty-content-template>
+                <div class="app-empty-list__block">
+                    <mat-icon>history</mat-icon>
+                    <p class="app-empty-list__title">{{ 'DOCUMENT_LIST.RECENT.EMPTY_STATE.TITLE' | translate}}</p>
+                </div>
+            </adf-custom-empty-content-template>
+        </adf-document-list>
+    </mat-expansion-panel>
+</mat-accordion> -->
+
+
+  <div id="document-list-container" class="app-document-list-container" fxLayout="row" fxLayoutAlign="start stretch"
+    fxLayoutGap="16px">
+    <adf-upload-drag-area fxFlex="1 1 auto" [disabled]="disableDragArea" [acceptedFilesType]="getFileFiltering()"
+      [rootFolderId]="currentFolderID" [versioning]="versioning" [adf-check-allowable-operation]="'create'"
+      [adf-nodes]="disableDragArea ? getCurrentDocumentListNode() : []" (beginUpload)="onBeginUpload($event)"
+      (updateFileVersion)="onUploadNewVersion($event)">
+      <div *ngIf="errorMessage" class="app-error-message">
+        <button (click)="resetError()" mat-icon-button>
+          <mat-icon>highlight_off</mat-icon>
+        </button>
+        <span class="app-error-message--text">{{errorMessage}}</span>
+      </div>
+
+      <adf-toolbar *ngIf="!disableDragArea" class="app-files-toolbar">
+        <adf-toolbar-title fxFlex="0 1 auto">
+          <adf-breadcrumb fxShow fxHide.lt-sm="true" class="app-files-breadcrumb" root="FOND DOCUMENTAIRE"
+            [rootId]="currentSite" [target]="documentList" [folderNode]="currentFolderID">
+          </adf-breadcrumb>
+        </adf-toolbar-title>
+
+        <div class="adf-toolbar--spacer"></div>
+
+        <!-- <adf-upload-button
+    [rootFolderId]="currentFolderID || '-root-'"
+    [adf-check-allowable-operation]="'create'"
+    (success)="uploadSuccess()"
+  >
+  </adf-upload-button> -->
+
+        <!-- <adf-toolbar-divider fxFlex="0 0 auto"></adf-toolbar-divider> -->
+        <adf-toolbar-divider fxFlex="0 0 auto" fxHide fxShow.lt-sm="true"></adf-toolbar-divider>
+
+        <div fxFlex="0 0 auto" class="app-document-action-buttons" fxShow fxHide.lt-sm="true">
+
+
+
+
+
+
+          <button mat-icon-button data-automation-id="document-list-grid-view"
+            title="{{ 'DOCUMENT_LIST.TOOLBAR.CARDVIEW' | translate }}" (click)="toggleGalleryView()">
+            <mat-icon *ngIf="displayMode === 'list'" matTooltip="{{ 'DOCUMENT_LIST.TOOLBAR.CARDVIEW' | translate }}">
+              view_comfy
+            </mat-icon>
+            <mat-icon *ngIf="displayMode === 'gallery'" matTooltip="{{ 'DOCUMENT_LIST.TOOLBAR.LISTVIEW' | translate }}">
+              list
+            </mat-icon>
+          </button>
+          <button data-automation-id="create-new-folder" mat-icon-button
+            [disabled]="!canCreateContent(documentList.folderNode)"
+            title="{{ 'DOCUMENT_LIST.TOOLBAR.NEW_FOLDER' | translate }}" (error)="openSnackMessageError($event)"
+            (success)="documentList.reload()" [adf-create-folder]="currentFolderID"
+            matTooltip="{{ 'DOCUMENT_LIST.TOOLBAR.NEW_FOLDER' | translate }}">
+            <mat-icon>create_new_folder</mat-icon>
+          </button>
+
+
+          <button data-automation-id="edit-folder" mat-icon-button [disabled]="!canEditFolder(documentList.selection)"
+            title="{{ 'DOCUMENT_LIST.TOOLBAR.EDIT_FOLDER' | translate }}" (error)="openSnackMessageError($event)"
+            [adf-edit-folder]="documentList.selection[0]?.entry" (success)="documentList.reload()"
+            matTooltip="{{ 'DOCUMENT_LIST.TOOLBAR.EDIT_FOLDER' | translate }}">
+            <mat-icon>create</mat-icon>
+          </button>
+
+          <button mat-icon-button [disabled]="!hasSelection(documentList.selection)"
+            title="{{ 'DOCUMENT_LIST.TOOLBAR.DOWNLOAD' | translate }}" [adfNodeDownload]="documentList.selection"
+            matTooltip="{{ 'DOCUMENT_LIST.TOOLBAR.DOWNLOAD' | translate }}">
+            <mat-icon>get_app</mat-icon>
+          </button>
+
+          <button mat-icon-button data-automation-id="delete-toolbar-button" adf-check-allowable-operation="delete"
+            [permanent]="true" [adf-nodes]="documentList.selection"
+            title="{{ 'DOCUMENT_LIST.TOOLBAR.DELETE' | translate }}" (delete)="onDeleteActionSuccess($event)"
+            [adf-delete]="documentList.selection" matTooltip="{{ 'DOCUMENT_LIST.TOOLBAR.DELETE' | translate }}">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <button data-automation-id="favorite" mat-icon-button [disabled]="!documentList.selection.length"
+            #favorite="adfFavorite" [adf-node-favorite]="documentList.selection"
+            matTooltip="{{ 'DOCUMENT_LIST.TOOLBAR.FAVORITES' | translate }}">
+            <mat-icon>
+              {{ favorite.hasFavorites() ? 'star' :'star_border' }}
+            </mat-icon>
+          </button>
+
+          <button mat-icon-button [disabled]="documentList.selection.length && !shareRef.isFile"
+            [baseShareUrl]="baseShareUrl" #shareRef="adfShare" [adf-share]="documentList.selection[0]" [matTooltip]="(shareRef.isShared
+                  ? 'DOCUMENT_LIST.TOOLBAR.SHARE_EDIT'
+                  : 'DOCUMENT_LIST.TOOLBAR.SHARE') | translate">
+            <mat-icon>
+              share
+            </mat-icon>
+          </button>
+        </div>
+
+
+
+
+
+
+        <adf-upload-button
+        #uploadButton
+        tooltip="Importer"
+
+        [rootFolderId]="documentList.currentFolderId"
+        [multipleFiles]="true"
+
+
+        (error)="openSnackMessageError($event)"
+        [versioning]="versioning"
+        [adf-check-allowable-operation]="'create'"
+
+        (permissionEvent)="handlePermissionError($event)"
+        (beginUpload)="onBeginUpload($event)">
+    </adf-upload-button>
+      </adf-toolbar>
+      <div class="app-document-list-container" [ngClass]="{'adf-sticky-document-list': stickyHeader }">
+        <adf-document-list #documentList class="app-file-list-container"
+         [display]="displayMode"
+          [permissionsStyle]="permissionsStyle"
+           [currentFolderId]="currentFolderID"
+           [contextMenuActions]="true"
+          [contentActions]="true"
+          [allowDropFiles]="true"
+          [stickyHeader]="stickyHeader"
+           [multiselect]="true"
+          [node]="nodeResult"
+           (ready)="emitReadyEvent($event)"
+           (preview)="showPreview($event)"
+           [contentActions]="true">
+
+
+
+
+
+          <adf-custom-empty-content-template *ngIf="disableDragArea">
+            <div class="app-empty_template">
+              <div class="app-no-result-message">{{ 'SEARCH.NO_RESULT' | translate }}</div>
+            </div>
+          </adf-custom-empty-content-template>
+          <data-columns>
+            <data-column key="$thumbnail" type="image" [sortable]="false" class="app-image-table-cell"
+              [class.adf-cell-thumbnail]="thumbnails">
+            </data-column>
+            <data-column key="name" sortingKey="name" class="app-ellipsis-cell"
+              title="{{'DOCUMENT_LIST.COLUMNS.DISPLAY_NAME' | translate}}" [formatTooltip]="getNodeNameTooltip">
+              <ng-template let-context>
+                <adf-name-column key="name" [context]="context"></adf-name-column>
+              </ng-template>
+            </data-column>
+
+            <!-- Location column demo -->
+            <!--
+    <data-column
+        key="path"
+        type="location"
+        format="/files"
+        title="Location">
+    </data-column>
+    -->
+            <data-column key="content.sizeInBytes" title="{{'DOCUMENT_LIST.COLUMNS.SIZE' | translate}}" type="fileSize"
+              sortingKey="sizeInBytes" class="app-desktop-only adf-ellipsis-cell">
+            </data-column>
+            <data-column *ngIf="searchTerm" key="search" title="Search" class="app-desktop-only adf-expand-cell-3">
+              <ng-template let-entry="$implicit">
+                <div [innerHTML]="searchResultsHighlight(entry.row.node.entry.search) | highlight:searchTerm">
+                </div>
+              </ng-template>
+            </data-column>
+            <!-- Notes: has performance overhead due to multiple files/folders causing separate HTTP calls to get tags -->
+            <!--
+    <data-column
+        title="{{'DOCUMENT_LIST.COLUMNS.TAG' | translate}}"
+        key="id"
+        class="app-full-width adf-ellipsis-cell">
+        <ng-template let-entry="$implicit">
+            <alfresco-tag-node-list  [nodeId]="entry.data.getValue(entry.row, entry.col)"></alfresco-tag-node-list>
+        </ng-template>
+    </data-column>
+    -->
+
+
+            <data-column title="{{'DOCUMENT_LIST.COLUMNS.IS_LOCKED' | translate}}" key="lock" [focus]="false"
+              [sortable]="false" class="app-desktop-only adf-ellipsis-cell">
+              <ng-template let-entry="$implicit">
+                <button mat-icon-button [adf-node-lock]="entry.row.node.entry" class="app-lock-button">
+                  <mat-icon *ngIf="entry.row.getValue('isLocked')">lock</mat-icon>
+                  <mat-icon *ngIf="!entry.row.getValue('isLocked')">lock_open</mat-icon>
+                </button>
+              </ng-template>
+            </data-column>
+            <data-column title="{{'DOCUMENT_LIST.COLUMNS.CREATED_BY' | translate}}" key="createdByUser.displayName"
+              sortingKey="createdByUser" class="app-desktop-only adf-ellipsis-cell">
+            </data-column>
+            <data-column title="{{'DOCUMENT_LIST.COLUMNS.CREATED' | translate}}" key="createdAt" sortingKey="createdAt"
+              type="date" [format]="true ? 'medium' : 'timeAgo'"
+              class="app-desktop-only adf-ellipsis-cell">
+            </data-column>
+
+          </data-columns>
+          <content-actions>
+            <!-- common actions -->
+            <content-action icon="get_app" title="DOCUMENT_LIST.ACTIONS.DOWNLOAD" handler="download">
+            </content-action>
+            <content-action icon="content_copy" title="DOCUMENT_LIST.ACTIONS.FOLDER.COPY" permission="copy"
+              [disableWithNoPermission]="true" (error)="onContentActionError($event)"
+              (success)="onContentActionSuccess($event)" handler="copy">
+            </content-action>
+            <content-action icon="redo" title="DOCUMENT_LIST.ACTIONS.FOLDER.MOVE" permission="update"
+              [disableWithNoPermission]="true" (error)="onContentActionError($event)"
+              (success)="onContentActionSuccess($event)" handler="move">
+            </content-action>
+            <content-action icon="delete" permission="delete" [disableWithNoPermission]="true"
+              title="DOCUMENT_LIST.ACTIONS.FOLDER.DELETE" (permissionEvent)="handlePermissionError($event)"
+              (success)="onDeleteActionSuccess($event)" handler="delete">
+            </content-action>
+            <content-action icon="info" title="DOCUMENT_LIST.ACTIONS.METADATA" (execute)="onManageMetadata($event)">
+            </content-action>
+            <content-action icon="supervisor_account" title="DOCUMENT_LIST.ACTIONS.PERMISSION" permission="copy"
+              (error)="onContentActionError($event)" (execute)="onPermissionRequested($event)">
+            </content-action>
+            <content-action icon="comment" title="Commenter" permission="update"
+            (error)="onContentActionError($event)" (execute)="onComment($event)">
+          </content-action>
+            <!-- document actions -->
+            <content-action icon="storage" target="document" title="DOCUMENT_LIST.ACTIONS.VERSIONS"
+              (execute)="onManageVersions($event)">
+            </content-action>
+            <content-action target="document" *ngIf="authenticationService.isBpmLoggedIn()" icon="play_arrow"
+              title="DOCUMENT_LIST.ACTIONS.DOCUMENT.PROCESS_ACTION" (execute)="startProcessAction($event)">
+            </content-action>
+            <content-action target="document" icon="lock" permission="lock" handler="lock" title="Verrouiller">
+            </content-action>
+            <!-- <content-action
+  icon="beach_access"
+  target="document"
+  title="DOCUMENT_LIST.ACTIONS.ASPECTS"
+  (execute)="onAspectUpdate($event)">
+</content-action> -->
+
+          </content-actions>
+
+        </adf-document-list>
+      </div>
+      <adf-pagination #standardPagination class="app-documentlist-pagination" *ngIf="!infiniteScrolling"
+        [target]="documentList" [supportedPageSizes]="[5, 10, 15, 20]" [pagination]="10">
+      </adf-pagination>
+
+
+
+    </adf-upload-drag-area>
+
+    <!-- <adf-info-drawer-layout *ngIf="showVersions" class="app-manage-versions-sidebar" fxFlex="0 0 auto">
+      <div info-drawer-content>
+
+          <adf-info-drawer [title]="'Details'" *ngIf="documentList.selection[0]">
+              <adf-info-drawer-tab label="Properties">
+                  <adf-content-metadata-card
+                      [node]="documentList.selection[0].entry"
+                      [displayEmpty]="displayEmptyMetadata">
+                  </adf-content-metadata-card>
+              </adf-info-drawer-tab>
+              <adf-info-drawer-tab label="Versions">
+                  <ng-container *ngIf="hasOneFileSelected();else choose_document_template">
+                      <ng-container *ngIf="userHasPermissionToManageVersions(); else no_permission_to_versions">
+                          <adf-version-manager
+                              [node]="documentList.selection[0].entry"
+                              [showComments]="showVersionComments"
+                              [allowDownload]="allowVersionDownload">
+                          </adf-version-manager>
+                      </ng-container>
+                  </ng-container>
+                  <ng-template #choose_document_template>
+                      <div class="app-manage-versions-empty">
+                          <mat-icon class="app-manage-versions-empty-icon">face</mat-icon>
+                          {{'VERSION.CHOOSE_FILE' | translate}}
+                      </div>
+                  </ng-template>
+                  <ng-template #no_permission_to_versions>
+                      <div class="app-manage-versions-no-permission">
+                          <mat-icon class="app-manage-versions-no-permission-icon">warning</mat-icon>
+                          {{'VERSION.NO_PERMISSION' | translate}}
+                      </div>
+                  </ng-template>
+              </adf-info-drawer-tab>
+          </adf-info-drawer>
+      </div>
+  </adf-info-drawer-layout> -->
+
+  </div>
+
+</div>
+
+<div class="app-container">
+
+  <div *ngIf="processId">
+    <adf-start-process [values]="formValues" [appId]="processId" (start)="closeStartProcess()"
+      (cancel)="closeStartProcess()">
+    </adf-start-process>
+  </div>
+
+  <div >
+
+  </div>
+
+<adf-file-uploading-dialog></adf-file-uploading-dialog>
+  </div>
+
+
+
+
